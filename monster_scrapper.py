@@ -1,7 +1,7 @@
 import feedparser
 import csv
 import json
-import pandas as pd
+#import pandas as pd
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
@@ -12,9 +12,9 @@ def extract(query):
 
     url_xml = urlopen(final_url)
     xml = url_xml.read()
+    print(xml)
     url_xml.close()
-
-    soup_page = BeautifulSoup(xml, "xml")
+    soup_page = BeautifulSoup(xml,features="lxml")
     list = soup_page.findAll("item")
 
     create(list)

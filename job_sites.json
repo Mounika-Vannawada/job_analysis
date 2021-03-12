@@ -1,0 +1,9 @@
+{"monster": {
+    "url": "http://rss.jobsearch.monster.com/rssquery.ashx?q=",
+    "item": ["title", "description", "link", "guid", "pubdate"]
+ },
+ "indeed": {
+     "url": "https://rss.indeed.com/rss?q=",
+     "item": ["title", "link", "source", "guid", "pubdate", "description", "georss"]
+ }
+}
