@@ -29,4 +29,4 @@ def data_extract():
 
 if __name__ == "__main__":
     data = data_extract()
-    #print(data) # check final data
+    print(data) # check final data
