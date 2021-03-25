@@ -1,0 +1,11 @@
+import eluta
+import indeed 
+import monster
+
+if __name__=="__main__":
+    a="engineer"
+    L=eluta.extract(a) 
+    L.append(indeed.extract(a))
+    L.append(monster.extract(a))
+    print(L)
+    
