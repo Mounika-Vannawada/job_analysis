@@ -28,6 +28,7 @@ def create(list):
         print(item.pubDate.text)
         print("\n")
  
+ 
     
 
 query="engineer"
