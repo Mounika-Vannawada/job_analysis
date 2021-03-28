@@ -29,18 +29,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    
-                        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    <form action="/" method="POST">
+                        <button class="navbar-toggler ml-auto mr-0" type="submit" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
                         <div class="input-group rounded">
-                           <input type="search" class="form-control rounded" placeholder="Find Your Job Here {{dictionary}}" aria-label="Search"  aria-describedby="search-addon" />
+                           <input type="text" id = "search" name = "search" class="form-control rounded" placeholder="Find Your Job Here {{data}}" aria-label="Search"  aria-describedby="search-addon" />
                            <span class="input-group-text border-0" id="search-addon">
-                            <i class="fas fa-search"></i>
+                                 <button type="submit" ><i class="fas fa-search"></i></button>
                          </span>
                         </div>
+                       
+                    </form>
                         
                     </nav>
                 </div>
@@ -90,11 +92,11 @@
     <script src="../static/js/tooplate-scripts.js"></script>
     <script>
 
-        var dict1= '{{dictionary | tojson }}';
-      //  const obj = JSON.parse(dict1);
+        var dict1= '{{data | tojson}}';
+        var obj = JSON.parse(dict1);
         var list1 = '{{list}}';
         console.log(list1);
-        console.log(dict1);
+        console.log(obj.title);
         console.log("heloooo");
         var dict = {"title": "title111"}
         let ctxLine,
@@ -111,7 +113,7 @@
         // DOM is ready
         $(function () {
             updateChartOptions();
-            drawLineChart(dict); // Line Chart
+            drawLineChart(obj); // Line Chart
             drawBarChart(); // Bar Chart
             drawPieChart(); // Pie Chart
             drawCalendar(); // Calendar
