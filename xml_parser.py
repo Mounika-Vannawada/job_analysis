@@ -17,10 +17,13 @@ def extract_xml_data(url, query, items):
     data  = []
 
     soup_page = BeautifulSoup(xml,features="lxml")
-    for list in soup_page.findAll("item"):
+    for job_listing in soup_page.findAll("item"):
         attrs = {}
         for item in items:
-            attrs[item] = "" if not list.find(item) else list.find(item).text
+            if item == "link":
+                attrs[item] = job_listing.find('link').next_sibling
+            else:
+                attrs[item] = "" if not job_listing.find(item) else job_listing.find(item).text
         data.append(attrs)
 
     return data
