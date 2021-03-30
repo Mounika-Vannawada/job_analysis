@@ -6,22 +6,13 @@ parent_dir = os.path.dirname(current_dir)
 sys.path.insert(0, parent_dir) 
 from json_parser import parser
 import numpy as np
-   
-def query():
+
+def analysis2():
     client = pymongo.MongoClient("mongodb+srv://gurpreet:gurpreet@cluster0.zc1iw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
     db  = client["mydatabase"]
     doc = db["historic"]
 
-    dic = parser('../technologies.json')
-    lang = [ [l, doc.find({"sector": l.lower()}).count() ] for l in dic['languages']]
-    db = [ [l, doc.find({"sector": l.lower()}).count() ] for l in dic['Databases']]
-    web = [ [l, doc.find({"sector": l.lower()}).count() ] for l in dic['Web Technologies']]
-    devops = [ [l, doc.find({"sector": l.lower()}).count() ] for l in dic['DevOps Tools']]
-
-    contract = doc.find({"sector": "contract"}).count()
-    fulltime = doc.find({"sector": { '$all': ['full', 'time']}}).count()
-    
     d = doc.find( { 'salary': {'$ne': np.nan}})
     
     exp = {'hours': [], 'year': [], 'total': 0}
@@ -62,14 +53,15 @@ def query():
                 pass
             else:
                 entry['year'].append(salary3)
+
+
+    year_max = [ ['experienced', max(exp['year'])], ['manager', max(manager['year'])], ['entry level', max(entry['year'])]]
+    year_min = [ ['experienced', min(exp['year'])], ['manager', min(manager['year'])], ['entry level', min(entry['year'])]]
+
+    hour_max = [ ['experienced', max(exp['hour'])], ['manager', max(manager['hour'])], ['entry level', max(entry['hour'])]]
+    year_min = [ ['experienced', min(exp['hour'])], ['manager', min(manager['hour'])], ['entry level', min(entry['hour'])]]
     
-    print(max(exp['hours']), min(exp['year']), max(exp['year']))
-     
-    print(max(manager['hours']), min(manager['year']), max(manager['year']))
-
-    print(max(entry['hours']), min(entry['year']), max(entry['year']))
-    print(exp['total'], manager['total'], entry['total'])
-
+    
     
 def salary(sal):
     cur  = re.compile(r"\d{1,3}(?:,\d{3})*(?:\.\d+)?(?=\s)")  
@@ -77,4 +69,4 @@ def salary(sal):
     sal = int(sal.split(".")[0].replace(",", ""))
     return sal
 
-query()
+analysis2()
