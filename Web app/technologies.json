@@ -1,5 +1,4 @@
 {"languages": ["Python",
-<<<<<<< HEAD
    "PHP",
    "Java",
    "C",
@@ -37,45 +36,4 @@
    "GIT",
    "GitHub"
    ]
-=======
-    "PHP",
-    "Java",
-    "C",
-    "C++",
-    "PowerShell",
-    "Shell",
-    "Bash",
-    "Ruby",
-    "aspnet"
-    ],
- "Databases": ["SQL Server",
-    "Postgre SQL",
-    "MySQL",
-    "MongoDB",
-    "Oracle",
-    "SQLite"
-    ],
- "Web Technologies": ["JavaScript",
-    "HTML",
-    "CSS",
-    "React",
-    "jQuery",
-    "Bootstrap",
-    "Angular",
-    "Node.js",
-    "Express.js"
-    ],
- "DevOps Tools": ["Puppet",
-    "Chef", 
-    "Ansible",
-    "Terraform",
-    "Jenkins",
-    "CircleCI",
-    "Maven",
-    "Gradle",
-    "GIT",
-    "GitHub",
-    "GitLab"
-    ]
->>>>>>> a95cd3a1c50007fd6c4979c25367ea25fc9d19e7
 }
