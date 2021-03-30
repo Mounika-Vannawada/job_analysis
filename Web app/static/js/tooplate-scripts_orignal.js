@@ -9,7 +9,7 @@ function drawLineChart(dict) {
           {
             scaleLabel: {
               display: true,
-              labelString: 'Number of Jobs'
+              labelString: "Year"
             }
           }
         ]
@@ -25,10 +25,24 @@ function drawLineChart(dict) {
         labels: dict.labels,
         datasets: [
           {
-            label: "Language Vs Jobs",
+            label: "Temperature data",
             data: dict.graphdata,
             fill: false,
             borderColor: "rgb(75, 192, 192)",
+            lineTension: 0.1
+          },
+          {
+            label: 'title',
+            data: dict.graphdata,
+            fill: false,
+            borderColor: "rgba(255,99,132,1)",
+            lineTension: 0.1
+          },
+          {
+            label: "Featured",
+            data: dict.graphdata,
+            fill: false,
+            borderColor: "rgba(153, 102, 255, 1)",
             lineTension: 0.1
           }
         ]
@@ -40,7 +54,7 @@ function drawLineChart(dict) {
   }
 }
 
-function drawBarChart(dict) {
+function drawBarChart() {
   if ($("#barChart").length) {
     ctxBar = document.getElementById("barChart").getContext("2d");
 
@@ -54,7 +68,7 @@ function drawBarChart(dict) {
             },
             scaleLabel: {
               display: true,
-              labelString: ""
+              labelString: "Hits"
             }
           }
         ]
@@ -67,13 +81,27 @@ function drawBarChart(dict) {
     configBar = {
       type: "bar",
       data: {
-        labels: dict.labels,
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [
           {
-            label: "Database Vs Jobs",
-            data: dict.graphdata,
-            backgroundColor: dict.backgroundColor,
-            borderColor: dict.borderColor,
+            label: "# of Hits",
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)"
+            ],
+            borderColor: [
+              "rgba(255,99,132,1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)"
+            ],
             borderWidth: 1
           }
         ]
@@ -85,7 +113,7 @@ function drawBarChart(dict) {
   }
 }
 
-function drawPieChart(piedata) {
+function drawPieChart() {
   if ($("#pieChart").length) {
     ctxPie = document.getElementById("pieChart").getContext("2d");
     optionsPie = {
@@ -98,15 +126,15 @@ function drawPieChart(piedata) {
       data: {
         datasets: [
           {
-            data: [piedata['Contract'], piedata['fulltime']],
+            data: [4600, 5400],
             backgroundColor: [
               window.chartColors.purple,
               window.chartColors.green
             ],
-            label: "Job Type"
+            label: "Storage"
           }
         ],
-        labels: ["Contract Jobs: " + piedata['Contract'], "Fulltime Jobs: " + piedata['fulltime']]
+        labels: ["Used: 4,600 GB", "Available: 5,400 GB"]
       },
       options: optionsPie
     };

@@ -4,6 +4,7 @@ if __name__ == "__main__":
     l = []
     #call the fun for the list of dict data
     #data = data_extract()
+    data = []
     #print(data[0][0])
     for d in data:
         

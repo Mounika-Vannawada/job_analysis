@@ -14,8 +14,9 @@ from nltk.stem.porter import PorterStemmer
 
 def extract(query):
     url= "https://www.eluta.ca/rss?q=sort:rank+field:"
-    query= "engineer"
+    query = query.replace(" ", "%20%")
     final_url = url + query
+    print(final_url)
     url_xml = urlopen(final_url)
     xml = url_xml.read()
     url_xml.close()
