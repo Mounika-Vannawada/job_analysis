@@ -8,8 +8,8 @@
     "Bash",
     "Ruby"
     ],
- "Databases": ["SQL Server",
-    "Postgre SQL",
+ "Databases": ["MSServer",
+    "PostgreSQL",
     "MySQL",
     "MongoDB",
     "Oracle",
@@ -22,8 +22,8 @@
     "jQuery",
     "Bootstrap",
     "Angular",
-    "Node.js",
-    "Express.js"
+    "Nodejs",
+    "Expressjs"
     ],
  "DevOps Tools": ["Puppet",
     "Chef", 
@@ -34,7 +34,6 @@
     "Maven",
     "Gradle",
     "GIT",
-    "GitHub",
-    "GitLab"
+    "GitHub"
     ]
 }
