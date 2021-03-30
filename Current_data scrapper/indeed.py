@@ -14,7 +14,7 @@ from nltk.stem.porter import PorterStemmer
 
 def extract(query):
     url= "https://rss.indeed.com/rss?q="
-    query= "engineer"
+    query = query.replace(" ", "%20%")
     final_url = url + query
     url_xml = urlopen(final_url)
     xml = url_xml.read()

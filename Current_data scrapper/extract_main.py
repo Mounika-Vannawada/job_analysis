@@ -13,7 +13,7 @@ roles =["Software Developer","Software Engineer","Software Tester","Software Eng
 
 def saverecord(mydict):
     db  = client["mydatabase"]
-    mycol = db["currentData"]
+    mycol = db["currentDataNew"]
     print(mycol.insert_one(mydict))
 
 if __name__=="__main__":

@@ -29,6 +29,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    <nav>
                     <form action="/" method="POST">
                         <button class="navbar-toggler ml-auto mr-0" type="submit" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +37,7 @@
                         </button>
 
                         <div class="input-group rounded">
-                           <input type="text" id = "search" name = "search" class="form-control rounded" placeholder="Find Your Job Here {{data}}" aria-label="Search"  aria-describedby="search-addon" />
+                           <input type="text" id = "search" name = "search" class="form-control rounded" placeholder="Find Your Job Here" aria-label="Search"  aria-describedby="search-addon" />
                            <span class="input-group-text border-0" id="search-addon">
                                  <button type="submit" ><i class="fas fa-search"></i></button>
                          </span>
@@ -51,31 +52,26 @@
             <div class="row tm-content-row tm-mt-big">
                 <div class="tm-col tm-col-big">
                     <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title">Latest Hits</h2>
+                        <h2 class="tm-block-title"></h2>
                         <canvas id="lineChart"></canvas>
                     </div>
                 </div>
                 <div class="tm-col tm-col-big">
                     <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title">Performance</h2>
+                        <h2 class="tm-block-title"></h2>
                         <canvas id="barChart"></canvas>
                     </div>
                 </div>
-                <div class="tm-col tm-col-small">
+                <div class="tm-col tm-col-small" >
                     <div class="bg-white tm-block h-100">
                         <canvas id="pieChart" class="chartjs-render-monitor"></canvas>
                     </div>
                 </div>
+               
+        </div>
+        <div class="row tm-content-row tm-mt-big">
+          
 
-                
-        
-            <footer class="row tm-mt-small">
-                <div class="col-12 font-weight-light">
-                    <p class="d-inline-block tm-bg-black text-white py-2 px-4">
-                 
-					</p>
-                </div>
-            </footer>
         </div>
     </div>
     <script src="../static/js/jquery-3.3.1.min.js"></script>
@@ -92,13 +88,58 @@
     <script src="../static/js/tooplate-scripts.js"></script>
     <script>
 
-        var dict1= '{{data | tojson}}';
-        var obj = JSON.parse(dict1);
-        var list1 = '{{list}}';
-        console.log(list1);
-        console.log(obj.title);
-        console.log("heloooo");
-        var dict = {"title": "title111"}
+     
+        var list1 = '{{graph1 | tojson}}';
+        var list2 = '{{graph2 | tojson}}';
+        var pie1 = '{{pie | tojson }}';
+        
+        var obj = JSON.parse(list1)
+        var obj2 = JSON.parse(list2)
+        var pie = JSON.parse(pie1)
+        console.log(pie)
+        var labels = []
+        var graphdata = [] 
+
+        for (var i=0; i<obj.length; i++){
+        // inner loop is for the inner arrays
+                labels[i] = obj[i][0]
+                graphdata[i] = obj[i][1]
+            } 
+        dict = {"labels" : labels , "graphdata" : graphdata};
+        console.log(dict)
+        
+
+        //for the bar graph 
+        var backgroundColor = [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)"
+            ]
+        var borderColor = [
+              "rgba(255,99,132,1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)"
+            ]
+        var labels1 = []
+        var graphdata1 = [] 
+        var bordercolor = []
+        var backgroundcolor = [] 
+        for (var i=0; i<obj2.length; i++){
+        // inner loop is for the inner arrays
+                labels1[i] = obj2[i][0]
+                graphdata1[i] = obj2[i][1]
+                bordercolor[i] = borderColor[i%6]
+                backgroundcolor[i] =backgroundColor[i%6]
+            } 
+        dict1 = {"labels" : labels1 , "graphdata" : graphdata1, "borderColor" : bordercolor,"backgroundColor" : backgroundcolor };
+        console.log(dict1)
+
         let ctxLine,
             ctxBar,
             ctxPie,
@@ -113,9 +154,9 @@
         // DOM is ready
         $(function () {
             updateChartOptions();
-            drawLineChart(obj); // Line Chart
-            drawBarChart(); // Bar Chart
-            drawPieChart(); // Pie Chart
+            drawLineChart(dict); // Line Chart
+            drawBarChart(dict1); // Bar Chart
+            drawPieChart(pie); // Pie Chart
             drawCalendar(); // Calendar
 
             $(window).resize(function () {
