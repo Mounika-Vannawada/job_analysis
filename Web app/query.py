@@ -13,6 +13,7 @@ def runQuery():
     db  = client["mydatabase"]
     doc = db["historic"]
 
+
     dic = parser('./technologies.json')
     lang = [ [l, doc.find({"sector": l.lower()}).count() ] for l in dic['languages']]
     db = [ [l, doc.find({"sector": l.lower()}).count() ] for l in dic['Databases']]
