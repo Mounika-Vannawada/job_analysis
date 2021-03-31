@@ -48,31 +48,103 @@
                     </nav>
                 </div>
             </div>
+            <div class="row tm-content-row tm-mt-big">
+                <div  class="input-group-text border-0">
+                <h2 class="tm-block-title">Analysis on current Data</h2>
+                </div>
+            </div>
+            <!-- row 2 -->
+            <div class="row tm-content-row tm-mt-big">
+                
+                <div class="tm-col tm-col-big">
+                    <div class="bg-white tm-block h-100">
+                        <h2 class="tm-block-title">Role Specific Jobs (Contract)</h2>
+                        <canvas id="barChart5"></canvas>
+                    </div>
+                </div>
+                <div class="tm-col tm-col-big">
+                    <div class="bg-white tm-block h-100">
+                        <h2 class="tm-block-title">Role specific Jobs (Fulltime)</h2>
+                        <canvas id="barChart6"></canvas>
+                    </div>
+                </div>
+                <div class="tm-col tm-col-small"  >
+                    
+                    <div class="bg-white tm-block h-100">
+                        <h2 class="tm-block-title">Job Type</h2>
+                        <canvas id="pieChart3" class="chartjs-render-monitor"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="row tm-content-row tm-mt-big">
+                <div  class="input-group-text border-0">
+                <h2 class="tm-block-title">Analysis on Historic Data</h2>
+                </div>
+            </div>
+
+
             <!-- row -->
             <div class="row tm-content-row tm-mt-big">
                 <div class="tm-col tm-col-big">
                     <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title"></h2>
+                        <h2 class="tm-block-title">Hourly salary Comparison</h2>
                         <canvas id="lineChart"></canvas>
                     </div>
                 </div>
                 <div class="tm-col tm-col-big">
                     <div class="bg-white tm-block h-100">
-                        <h2 class="tm-block-title"></h2>
-                        <canvas id="barChart"></canvas>
+                        <h2 class="tm-block-title">Yearly Salary Comparison</h2>
+                        <canvas id="lineChart2"></canvas>
                     </div>
                 </div>
+               
                 <div class="tm-col tm-col-small" >
                     <div class="bg-white tm-block h-100">
+                        <h2 class="tm-block-title">Job Type</h2>
                         <canvas id="pieChart" class="chartjs-render-monitor"></canvas>
                     </div>
                 </div>
                
         </div>
-        <div class="row tm-content-row tm-mt-big">
-          
+    <!-- row  ends -->
 
+    
+        <!-- row 3 -->
+        <div class="row tm-content-row tm-mt-big">
+            <div class="tm-col tm-col-big">
+                <div class="bg-white tm-block h-100">
+                    <h2 class="tm-block-title">Devops Technologies specific Jobs</h2>
+                    <canvas id="barChart3"></canvas>
+                </div>
+            </div>
+            <div class="tm-col tm-col-big">
+                <div class="bg-white tm-block h-100">
+                    <h2 class="tm-block-title"> Language Specific Jobs</h2>
+                    <canvas id="barChart4"></canvas>
+                </div>
+            </div>
+          
+        
         </div>
+                <!-- row  ends -->
+                <!-- row 2 -->
+            <div class="row tm-content-row tm-mt-big">
+                <div class="tm-col tm-col-big">
+                    <div class="bg-white tm-block h-100">
+                        <h2 class="tm-block-title">Database specific Jobs</h2>
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+                <div class="tm-col tm-col-big">
+                    <div class="bg-white tm-block h-100">
+                        <h2 class="tm-block-title">Web Development Language specific Jobs</h2>
+                        <canvas id="barChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+                <!-- row  ends -->
+
+      
     </div>
     <script src="../static/js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
@@ -91,23 +163,19 @@
      
         var list1 = '{{graph1 | tojson}}';
         var list2 = '{{graph2 | tojson}}';
+        var web = JSON.parse('{{web | tojson }}');
+        var devops = JSON.parse('{{ devops | tojson}}');
+        var salary = JSON.parse('{{ salary | tojson}} ');
+        var current = JSON.parse('{{ current | tojson }}');
+        console.log(current)
+       
         var pie1 = '{{pie | tojson }}';
-        
+    
         var obj = JSON.parse(list1)
         var obj2 = JSON.parse(list2)
         var pie = JSON.parse(pie1)
-        console.log(pie)
-        var labels = []
-        var graphdata = [] 
-
-        for (var i=0; i<obj.length; i++){
-        // inner loop is for the inner arrays
-                labels[i] = obj[i][0]
-                graphdata[i] = obj[i][1]
-            } 
-        dict = {"labels" : labels , "graphdata" : graphdata};
-        console.log(dict)
-        
+      
+       
 
         //for the bar graph 
         var backgroundColor = [
@@ -137,9 +205,56 @@
                 bordercolor[i] = borderColor[i%6]
                 backgroundcolor[i] =backgroundColor[i%6]
             } 
-        dict1 = {"labels" : labels1 , "graphdata" : graphdata1, "borderColor" : bordercolor,"backgroundColor" : backgroundcolor };
-        console.log(dict1)
 
+        dict1 = {"labels" : labels1 , "graphdata" : graphdata1, "borderColor" : bordercolor,"backgroundColor" : backgroundcolor };
+       // console.log(dict1)
+       var labels = []
+        var graphdata = [] 
+
+        for (var i=0; i<obj.length; i++){
+        // inner loop is for the inner arrays
+                labels[i] = obj[i][0]
+                graphdata[i] = obj[i][1]
+                bordercolor[i] = borderColor[i%6]
+                backgroundcolor[i] =backgroundColor[i%6] 
+            } 
+        dict = {"labels" : labels , "graphdata" : graphdata ,"borderColor" : bordercolor,"backgroundColor" : backgroundcolor};
+        console.log(dict)
+
+        for (var i=0; i<12; i++){
+        // inner loop is for the inner arrays
+               
+                bordercolor[i] = borderColor[i%6]
+                backgroundcolor[i] =backgroundColor[i%6] 
+            } 
+        dict5 = {"labels" : current['jobkey'] , "graphdata" : current['roleJob'] ,"borderColor" : bordercolor,"backgroundColor" : backgroundcolor};
+       
+        dict6 = {"labels" : current['jobkey1'] , "graphdata" : current['roleJob1'] ,"borderColor" : bordercolor,"backgroundColor" : backgroundcolor};
+       
+        
+
+        var labels2 = []
+        var graphdata2 = []
+        for (var i=0; i<web.length; i++){
+        // inner loop is for the inner arrays
+                labels2[i] = web[i][0]
+                graphdata2[i] = web[i][1]
+                bordercolor[i] = borderColor[i%6]
+                backgroundcolor[i] =backgroundColor[i%6]
+            } 
+        dict2 = {"labels" : labels2 , "graphdata" : graphdata2, "borderColor" : bordercolor,"backgroundColor" : backgroundcolor };
+       
+        var labels3 = []
+        var graphdata3 = []
+        for (var i=0; i<devops.length; i++){
+        // inner loop is for the inner arrays
+                labels3[i] = devops[i][0]
+                graphdata3[i] = devops[i][1]
+                bordercolor[i] = borderColor[i%6]
+                backgroundcolor[i] =backgroundColor[i%6]
+            }
+        dict3 = {"labels" : labels3 , "graphdata" : graphdata3, "borderColor" : bordercolor,"backgroundColor" : backgroundcolor };
+        pie2 = {"Contract" : current['conVsFull']['contract'], 'fulltime' : current['conVsFull']['fulltime']}
         let ctxLine,
             ctxBar,
             ctxPie,
@@ -154,9 +269,16 @@
         // DOM is ready
         $(function () {
             updateChartOptions();
-            drawLineChart(dict); // Line Chart
+            drawLineChart(salary); // Line Chart
+            drawLineChart2(salary); // Line Chart
             drawBarChart(dict1); // Bar Chart
+            drawBarChart2(dict2); // Bar Chart
+            drawBarChart3(dict3); 
+            drawBarChart5(dict5); //bar chart 5
+            drawBarChart6(dict6);  //bar chart 6
+            drawBarChart4(dict); // Bar Chart
             drawPieChart(pie); // Pie Chart
+            drawPieChart2(pie2); // Pie Chart
             drawCalendar(); // Calendar
 
             $(window).resize(function () {

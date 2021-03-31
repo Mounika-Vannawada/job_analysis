@@ -18,9 +18,11 @@ def mainfun():
         print("Post request with query: " + query)
     '''
     graphDict = query.runQuery()
+    salary = query.analysis2()
+    current = query.analysis3()
     pie = {'Contract' : graphDict['contract'], 'fulltime' :graphDict['fulltime'] }
 
-    return render_template('index.html', graph1= graphDict['lang'], graph2= graphDict['db'], pie = pie)
+    return render_template('index.html', current = current , salary = salary, graph1= graphDict['lang'], graph2= graphDict['db'], pie = pie , web = graphDict['web'], devops = graphDict['devops'])
 # ======== Main ============================================================== #
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=True, port=5001)

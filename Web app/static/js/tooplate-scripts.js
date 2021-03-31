@@ -1,6 +1,6 @@
 const width_threshold = 480;
-
-function drawLineChart(dict) {
+//line chart 
+function drawLineChart(salary) {
   if ($("#lineChart").length) {
     ctxLine = document.getElementById("lineChart").getContext("2d");
     optionsLine = {
@@ -9,7 +9,7 @@ function drawLineChart(dict) {
           {
             scaleLabel: {
               display: true,
-              labelString: 'Number of Jobs'
+              labelString: 'Salary'
             }
           }
         ]
@@ -22,13 +22,20 @@ function drawLineChart(dict) {
     configLine = {
       type: "line",
       data: {
-        labels: dict.labels,
+        labels: salary.labels,
         datasets: [
           {
-            label: "Language Vs Jobs",
-            data: dict.graphdata,
+            label: "Hour minimum",
+            data: salary.hourmin,
             fill: false,
             borderColor: "rgb(75, 192, 192)",
+            lineTension: 0.1
+          },
+          {
+            label: 'Hour maximum',
+            data: salary.hourmax,
+            fill: false,
+            borderColor: "rgba(255,99,132,1)",
             lineTension: 0.1
           }
         ]
@@ -40,6 +47,57 @@ function drawLineChart(dict) {
   }
 }
 
+//line chart 
+function drawLineChart2(salary) {
+  if ($("#lineChart").length) {
+    ctxLine = document.getElementById("lineChart2").getContext("2d");
+    optionsLine = {
+      scales: {
+        yAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: 'Salary'
+            }
+          }
+        ]
+      }
+    };
+
+    // Set aspect ratio based on window width
+    optionsLine.maintainAspectRatio =
+      $(window).width() < width_threshold ? false : true;
+    configLine = {
+      type: "line",
+      data: {
+        labels: salary.labels,
+        datasets: [
+          {
+            label: "year minimum",
+            data: salary.yearmin,
+            fill: false,
+            borderColor: "rgb(75, 192, 192)",
+            lineTension: 0.1
+          },
+          {
+            label: 'year maximum',
+            data: salary.yearmax,
+            fill: false,
+            borderColor: "rgba(255,99,132,1)",
+            lineTension: 0.1
+          }
+        ]
+      },
+      options: optionsLine
+    };
+
+    lineChart = new Chart(ctxLine, configLine);
+  }
+}
+
+
+
+//bar graph
 function drawBarChart(dict) {
   if ($("#barChart").length) {
     ctxBar = document.getElementById("barChart").getContext("2d");
@@ -70,7 +128,7 @@ function drawBarChart(dict) {
         labels: dict.labels,
         datasets: [
           {
-            label: "Database Vs Jobs",
+            label: "Jobs",
             data: dict.graphdata,
             backgroundColor: dict.backgroundColor,
             borderColor: dict.borderColor,
@@ -85,9 +143,283 @@ function drawBarChart(dict) {
   }
 }
 
+
+//bar graph 2nd 
+function drawBarChart2(dict) {
+  if ($("#barChart").length) {
+    ctxBar = document.getElementById("barChart2").getContext("2d");
+
+    optionsBar = {
+      responsive: true,
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            },
+            scaleLabel: {
+              display: true,
+              labelString: ""
+            }
+          }
+        ],
+        xAxes: [
+          {
+            
+              stacked: true
+          }
+        ]
+      }
+    };
+
+    optionsBar.maintainAspectRatio =
+      $(window).width() < width_threshold ? false : true;
+
+    configBar = {
+      type: "bar",
+      data: {
+        labels: dict.labels,
+        datasets: [
+          {
+            label: "Jobs",
+            data: dict.graphdata,
+            backgroundColor: dict.backgroundColor,
+            borderColor: dict.borderColor,
+            borderWidth: 1
+          }
+        ]
+      },
+      options: optionsBar
+    };
+
+    barChart = new Chart(ctxBar, configBar);
+  }
+}
+
+
+//bar graph 3nd 
+function drawBarChart3(dict) {
+  if ($("#barChart").length) {
+    ctxBar = document.getElementById("barChart3").getContext("2d");
+
+    optionsBar = {
+      responsive: true,
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            },
+            scaleLabel: {
+              display: true,
+              labelString: ""
+            }
+          }
+        ]
+      }
+    };
+
+    optionsBar.maintainAspectRatio =
+      $(window).width() < width_threshold ? false : true;
+
+    configBar = {
+      type: "bar",
+      data: {
+        labels: dict.labels,
+        datasets: [
+          {
+            label: "Jobs",
+            data: dict.graphdata,
+            backgroundColor: dict.backgroundColor,
+            borderColor: dict.borderColor,
+            borderWidth: 1
+          }
+        ]
+      },
+      options: optionsBar
+    };
+
+    barChart = new Chart(ctxBar, configBar);
+  }
+}
+
+
+//bar graph 3nd 
+function drawBarChart4(dict) {
+  if ($("#barChart").length) {
+    ctxBar = document.getElementById("barChart4").getContext("2d");
+
+    optionsBar = {
+      responsive: true,
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            },
+            scaleLabel: {
+              display: true,
+              labelString: ""
+            }
+          }
+        ]
+      }
+    };
+
+    optionsBar.maintainAspectRatio =
+      $(window).width() < width_threshold ? false : true;
+
+    configBar = {
+      type: "bar",
+      data: {
+        labels: dict.labels,
+        datasets: [
+          {
+            label: "Jobs",
+            data: dict.graphdata,
+            backgroundColor: dict.backgroundColor,
+            borderColor: dict.borderColor,
+            borderWidth: 1
+          }
+        ]
+      },
+      options: optionsBar
+    };
+
+    barChart = new Chart(ctxBar, configBar);
+  }
+}
+
+
+
+//bar graph 5nd 
+function drawBarChart5(dict) {
+  if ($("#barChart").length) {
+    ctxBar = document.getElementById("barChart5").getContext("2d");
+
+    optionsBar = {
+      responsive: true,
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            },
+            scaleLabel: {
+              display: true,
+              labelString: ""
+            }
+          }
+        ]
+      }
+    };
+
+    optionsBar.maintainAspectRatio =
+      $(window).width() < width_threshold ? false : true;
+
+    configBar = {
+      type: "bar",
+      data: {
+        labels: dict.labels,
+        datasets: [
+          {
+            label: "Jobs",
+            data: dict.graphdata,
+            backgroundColor: dict.backgroundColor,
+            borderColor: dict.borderColor,
+            borderWidth: 1
+          }
+        ]
+      },
+      options: optionsBar
+    };
+
+    barChart = new Chart(ctxBar, configBar);
+  }
+}
+
+
+//bar graph 6
+function drawBarChart6(dict) {
+  if ($("#barChart").length) {
+    ctxBar = document.getElementById("barChart6").getContext("2d");
+
+    optionsBar = {
+      responsive: true,
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            },
+            scaleLabel: {
+              display: true,
+              labelString: ""
+            }
+          }
+        ]
+      }
+    };
+
+    optionsBar.maintainAspectRatio =
+      $(window).width() < width_threshold ? false : true;
+
+    configBar = {
+      type: "bar",
+      data: {
+        labels: dict.labels,
+        datasets: [
+          {
+            label: "Jobs",
+            data: dict.graphdata,
+            backgroundColor: dict.backgroundColor,
+            borderColor: dict.borderColor,
+            borderWidth: 1
+          }
+        ]
+      },
+      options: optionsBar
+    };
+
+    barChart = new Chart(ctxBar, configBar);
+  }
+}
+
+//pie chart 
 function drawPieChart(piedata) {
   if ($("#pieChart").length) {
     ctxPie = document.getElementById("pieChart").getContext("2d");
+    optionsPie = {
+      responsive: true,
+      maintainAspectRatio: false
+    };
+
+    configPie = {
+      type: "pie",
+      data: {
+        datasets: [
+          {
+            data: [piedata['Contract'], piedata['fulltime']],
+            backgroundColor: [
+              window.chartColors.purple,
+              window.chartColors.green
+            ],
+            label: "Job Type"
+          }
+        ],
+        labels: ["Contract Jobs: " + piedata['Contract'], "Fulltime Jobs: " + piedata['fulltime']]
+      },
+      options: optionsPie
+    };
+
+    pieChart = new Chart(ctxPie, configPie);
+  }
+}
+
+//pie chart 
+function drawPieChart2(piedata) {
+  if ($("#pieChart").length) {
+    ctxPie = document.getElementById("pieChart3").getContext("2d");
     optionsPie = {
       responsive: true,
       maintainAspectRatio: false
