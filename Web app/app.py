@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, request, session
 import json 
 import pymongo
-client = pymongo.MongoClient("mongodb+srv://gurpreet:gurpreet@cluster0.zc1iw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = pymongo.MongoClient("link here")
 db  = client["mydatabase"]
 mycol = db["currentData"]
 import query
